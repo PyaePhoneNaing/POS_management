@@ -1,9 +1,47 @@
-import './App.css'
+import { SidebarProvider, useSidebar } from "./Context/SidebarContext";
+import { useSwipe } from "./Hooks/useSwipe";
+import Sidebar from "./Components/Sidebar";
+import Header from "./Components/Header";
+import Overlay from "./Components/Overlay";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./Pages/Dashboard";
+import Products from "./Pages/Products";
+import Sales from "./Pages/Sales";
 
-function App() {
+function AppContent() {
+  const { isSidebarVisible, closeSidebar } = useSidebar();
+
   return (
-    <div>Hello</div>
-  )
+    <div className="d-flex">
+      {/* Sidebar */}
+      <div className={`sidebar ${isSidebarVisible ? "visible" : ""}`}>
+        <Sidebar />
+      </div>
+
+      {/* Overlay */}
+      {isSidebarVisible && <Overlay onClick={closeSidebar} />}
+
+      {/* Main Content */}
+      <div className="flex-grow-1">
+        <Header /> {/* No need to pass toggleSidebar as a prop */}
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/sales" element={<Sales />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <SidebarProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </SidebarProvider>
+  );
+}
