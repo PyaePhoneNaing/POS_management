@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-export function useSwipe(onSwipeLeft, isActive = true, threshold = 50) {
+export function useSwipe(onSwipeLeft, isActive = true, threshold = 50, ref) {
   useEffect(() => {
-    if (!isActive) return;
+    if (!isActive || !ref?.current) return;
 
     let touchStartX = 0;
     let touchEndX = 0;
@@ -18,12 +18,13 @@ export function useSwipe(onSwipeLeft, isActive = true, threshold = 50) {
       }
     };
 
-    document.addEventListener("touchstart", handleTouchStart);
-    document.addEventListener("touchend", handleTouchEnd);
+    const element = ref.current;
+    element.addEventListener("touchstart", handleTouchStart);
+    element.addEventListener("touchend", handleTouchEnd);
 
     return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-      document.removeEventListener("touchend", handleTouchEnd);
+      element.removeEventListener("touchstart", handleTouchStart);
+      element.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [onSwipeLeft, isActive, threshold]);
+  }, [onSwipeLeft, isActive, threshold, ref]);
 }

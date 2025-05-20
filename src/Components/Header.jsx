@@ -26,7 +26,7 @@ export default function Header() {
     <div className="header px-3 py-2 d-flex align-items-center border-bottom shadow-sm">
       {/* Hamburger Menu */}
       <button
-        className="btn btn-light me-3"
+        className="btn btn-light d-lg-none me-3"
         onClick={toggleSidebar}
         aria-label="Toggle sidebar"
       >

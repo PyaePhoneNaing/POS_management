@@ -1,0 +1,188 @@
+.cart-overlay {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cart-modal {
+  background-color: #fff;
+  padding: 1.8rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.cart-modal h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.cart-modal p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.quantity-selector {
+  margin: 1.2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  label {
+    font-weight: 500;
+    color: #444;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    button {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f1f1f1;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+
+    span {
+      min-width: 30px;
+      text-align: center;
+      font-size: 1rem;
+      color: #333;
+    }
+  }
+}
+
+.cart-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+
+  .btn {
+    padding: 0.5rem !important;
+    height: auto;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    outline: none;
+    min-width: 110px;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-secondary {
+    background: linear-gradient(90deg, #f1f1f1 60%, #e0e0e0 100%);
+    color: #333;
+    border: 1px solid #d1d1d1;
+    &:hover, &:focus {
+      background: linear-gradient(90deg, #e0e0e0 60%, #ccc 100%);
+      color: #111;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+  }
+
+  .btn-primary {
+    background: linear-gradient(90deg, #00b14f 60%, #00993e 100%);
+    color: #fff;
+    border: 1px solid #00b14f;
+    &:hover, &:focus {
+      background: linear-gradient(90deg, #00993e 60%, #00b14f 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,177,79,0.10);
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #888;
+  cursor: pointer;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+.date-selector {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+
+  input[type="date"] {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:hover,
+    &:focus {
+      border-color: #00b14f;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .cart-actions {
+    flex-direction: column;
+    align-items: stretch;
+    .btn {
+      width: 100%;
+      min-width: unset;
+      font-size: 1.05rem;
+      padding: 0.9rem 0;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

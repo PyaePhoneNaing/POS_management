@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://pos-management-nine.vercel.app/
