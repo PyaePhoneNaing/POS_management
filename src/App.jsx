@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { SidebarProvider, useSidebar } from "./Context/SidebarContext";
 import { useSwipe } from "./Hooks/useSwipe";
 import Sidebar from "./Components/Sidebar";
@@ -10,11 +11,14 @@ import Sales from "./Pages/Sales";
 
 function AppContent() {
   const { isSidebarVisible, closeSidebar } = useSidebar();
+  const sidebarRef = useRef();
+
+  useSwipe(closeSidebar, isSidebarVisible, 50, sidebarRef);
 
   return (
     <div className="d-flex">
       {/* Sidebar */}
-      <div className={`sidebar ${isSidebarVisible ? "visible" : ""}`}>
+      <div ref={sidebarRef} className={`sidebar ${isSidebarVisible ? "visible" : ""}`}>
         <Sidebar />
       </div>
 
