@@ -61,7 +61,7 @@ export default function Cart({ cartItems, setCartItems, onClose, onConfirm, onAd
                   onChange={(e) => handleDateChange(item.id, e.target.value)}
                 />
               </div>
-              <button className="btn btn-secondary" style={{marginTop: 8}} onClick={() => handleRemove(item.id)}>
+              <button className="btn btn-secondary remove-btn"onClick={() => handleRemove(item.id)}>
                 Remove
               </button>
             </div>

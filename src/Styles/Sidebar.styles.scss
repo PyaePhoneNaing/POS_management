@@ -1,25 +1,21 @@
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 18rem; 
   height: 100vh; 
-  transition: transform 0.3s ease-in-out;
   z-index: 9999; 
+  width: 18rem; 
   background-color: var(--border-color); 
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
-  @media (max-width:768px) {
-    transform: translateX(-100%); 
-  }
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   @media(min-width:769px) {
     position: sticky;
+    transform: none !important;
+    transition: none !important;
+    left: 0;
   }
+
   
 }
 
-.sidebar.visible {
-  transform: translateX(0); // Slide the sidebar into view
-}
+
 
 .sidebar-header {
   height: 4rem; 

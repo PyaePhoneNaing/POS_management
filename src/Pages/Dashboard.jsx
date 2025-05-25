@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import useIsMobile from '../Hooks/useIsMobile';
 import useIsLaptop from '../Hooks/useIsLaptop';
 
+
+
 export default function Dashboard() {
   const [cartItems, setCartItems] = useState([]); // Cart items array
   const [isCartVisible, setIsCartVisible] = useState(false); // State for cart visibility
@@ -44,7 +46,7 @@ const isLaptop = useIsLaptop();
   };
 
   const handleCartConfirm = (finalizedProducts) => {
-    navigate('/products', { state: { finalizedProducts } });
+    navigate('/sales', { state: { finalizedProducts } });
   };
 
   const handlePrevPage = () => {
@@ -60,7 +62,6 @@ const isLaptop = useIsLaptop();
       <div className="col-12 ">
         <div className="card shadow-sm">
           <div className="card-body">
-            <h3>Products</h3>
             {/* Page Navigation Header (top for mobile, bottom for tablet+) */}
             {isMobile && (
               <div className="page-nav-header">
