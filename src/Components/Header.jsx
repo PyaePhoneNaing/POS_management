@@ -8,7 +8,7 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
-export default function Header() {
+export default function Header({ pageTitle }) {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "light");
   const { toggleSidebar } = useSidebar();
 
@@ -34,6 +34,9 @@ export default function Header() {
       </button>
 
       <div className="d-flex align-items-center me-auto">
+        {pageTitle && (
+          <h3 className="mb-0 ms-2" style={{ fontWeight: 700, fontSize: '1.5rem', color: 'var(--sidebar-text-color, #222)' }}>{pageTitle}</h3>
+        )}
       </div>
       <div className="d-flex align-items-center gap-3">
         {/* Theme toggle button */}

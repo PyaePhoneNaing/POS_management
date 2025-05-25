@@ -13,6 +13,14 @@
   z-index: 1000;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.remove-btn{
+      &:hover, &:focus {
+      background: #ff0505c6;
+      border-radius: 10px;
+      color: #000000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    }
 
 .cart-modal {
   background-color: #fff;
@@ -103,11 +111,10 @@
     background: linear-gradient(90deg, #f1f1f1 60%, #e0e0e0 100%);
     color: #333;
     border: 1px solid #d1d1d1;
-    &:hover, &:focus {
-      background: linear-gradient(90deg, #e0e0e0 60%, #ccc 100%);
-      color: #111;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    
+    
     }
+    
   }
 
   .btn-primary {
@@ -120,7 +127,7 @@
       box-shadow: 0 4px 16px rgba(0,177,79,0.10);
     }
   }
-}
+
 
 .close-btn {
   position: absolute;

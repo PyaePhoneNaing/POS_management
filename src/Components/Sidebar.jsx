@@ -1,35 +1,55 @@
-import { NavLink } from 'react-router-dom';
+import { animated, useSpring } from 'react-spring';
+import { useDrag } from '@use-gesture/react';
+import { useEffect } from 'react';
+import  useIsLaptop from '../Hooks/useIsLaptop';
+import SidebarContent from '../Components/SidebarContent';
 import '../Styles/Sidebar.styles.scss';
 
-const navigation = [
-  { name: 'Dashboard', href: '/', icon: 'bi-house' },
-  { name: 'Products', href: '/products', icon: 'bi-box' },
-  { name: 'Sales', href: '/sales', icon: 'bi-bar-chart' },
-];
 
-export default function Sidebar() {
+export default function Sidebar({ isSidebarVisible, sidebarRef, onClose }) {
+  const SIDEBAR_WIDTH = 288;
+  const isLaptop = useIsLaptop();
+
+  const [{ x }, api] = useSpring(() => ({ x: -SIDEBAR_WIDTH }));
+  useEffect(() => {
+    if (isLaptop) {
+      api.start({ x: 0 });
+    } else {
+      api.start({ x: isSidebarVisible ? 0 : -SIDEBAR_WIDTH });
+    }
+  }, [isSidebarVisible, isLaptop, api]);
+
+   
+
+  const bind = useDrag(
+    ({ down, movement: [mx], last, cancel }) => {
+      if (!isSidebarVisible) return;
+      const dragX = Math.min(mx, 0);
+      api.start({ x: down ? dragX : 0, immediate: down });
+      if (last && dragX < -SIDEBAR_WIDTH / 2) {
+        api.start({ x: -SIDEBAR_WIDTH });
+        if (onClose) onClose();
+      } else if (last) {
+        api.start({ x: 0 });
+      }
+    },
+    { axis: 'x', filterTaps: true }
+  );
+
   return (
-    <div className="sidebar shadow-lg visible">
-      <div className="sidebar-header border-bottom">
-        <img src="#" alt="Logo" className="sidebar-logo" />
-      </div>
+    <animated.div
+      {...(!isLaptop ? bind() : {})}
+      ref={sidebarRef}
+      className={`sidebar shadow-lg${isSidebarVisible ? ' visible' : ''}`}
+      style={{
+        transform: x.to((x) => `translateX(${x}px)`),
+        touchAction: 'none',
+      }}
+      aria-hidden={!isSidebarVisible}
+    >
+      <SidebarContent onClose={onClose} />
 
-      <nav className="sidebar-nav">
-        {navigation.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.href}
-            className={({ isActive }) =>
-              `nav-link d-flex align-items-center ${
-                isActive ? 'active-link' : 'inactive-link'
-              }`
-            }
-          >
-            <i className={`bi ${item.icon} me-3`}></i>
-            {item.name}
-          </NavLink>
-        ))}
-      </nav>
-    </div>
+      
+    </animated.div>
   );
 }
