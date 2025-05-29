@@ -28,7 +28,7 @@ function AppContent() {
       {/* Main Content */}
       <div className="flex-grow-1">
         <Header />
-        <div className="content ms-1">
+        <div className="content ms-1.5">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/sales" element={<Sales />} />

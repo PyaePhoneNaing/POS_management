@@ -7,7 +7,7 @@ import '../Styles/Sidebar.styles.scss';
 
 
 export default function Sidebar({ isSidebarVisible, sidebarRef, onClose }) {
-  const SIDEBAR_WIDTH = 288;
+  const SIDEBAR_WIDTH = 272;
   const isLaptop = useIsLaptop();
 
   const [{ x }, api] = useSpring(() => ({ x: -SIDEBAR_WIDTH }));
